@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import quotes from './quotes.json'
+import Phrase from './components/Phrase';
+import Author from './components/Author';
+import { useState } from 'react';
 
 function App() {
+
+  const colors = [ "#F767C0", "#AB6CDE", "#FF7997", "#FF9F72", "#FFCD5F", "#F9F871" ];
+
+  const [ quote, setQuote ] = useState(quotes[getNumber(quotes.length)]);
+  const [ background, setBackground ] = useState(colors[getNumber(colors.length)]);
+
+  const handleQuote = () => {
+    const index = getNumber(quotes.length);
+    setQuote(quotes[index]);
+    setBackground(colors[getNumber(colors.length)]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{background}} >
+      <div className='card' >
+        <Phrase 
+          quote={quote.quote} 
+          color={background}
+        />
+        <i>
+          <Author 
+            author={quote.author} 
+            changeQuote={handleQuote}
+            color={background}
+          />
+        </i>
+      </div>
     </div>
   );
 }
+const getNumber = max => Math.floor(Math.random() * max );
 
 export default App;

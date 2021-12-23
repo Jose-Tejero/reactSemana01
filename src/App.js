@@ -6,7 +6,11 @@ import { useState } from 'react';
 
 function App() {
 
-  const colors = [ "#F767C0", "#AB6CDE", "#FF7997", "#FF9F72", "#FFCD5F", "#F9F871" ];
+  const colors = [ 
+    "#F767C0", "#AB6CDE", "#FF7997", "#FF9F72", "#FFCD5F",
+    "#497DEC", "#0085E2", "#0085E2", "#008298", "#007A69",
+    "#4C4452", "#B2A8B8", "#E25F3A", "#A32809", "#A32809"
+ ];
 
   const [ quote, setQuote ] = useState(quotes[getNumber(quotes.length)]);
   const [ background, setBackground ] = useState(colors[getNumber(colors.length)]);

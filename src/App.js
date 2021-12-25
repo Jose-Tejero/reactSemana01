@@ -2,7 +2,8 @@ import './App.css';
 import quotes from './quotes.json'
 import Phrase from './components/Phrase';
 import Author from './components/Author';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
 
@@ -13,26 +14,29 @@ function App() {
  ];
 
   const [ quote, setQuote ] = useState(quotes[getNumber(quotes.length)]);
-  const [ background, setBackground ] = useState(colors[getNumber(colors.length)]);
+  //const background = colors[getNumber(colors.length)];
 
   const handleQuote = () => {
     const index = getNumber(quotes.length);
     setQuote(quotes[index]);
-    setBackground(colors[getNumber(colors.length)]);
   }
 
+  useEffect(() => {
+    document.body.style = `background: ${colors[getNumber(colors.length)]}`
+  }, [])
+
   return (
-    <div className="App" style={{background}} >
+    <div className="App" >
       <div className='card' >
         <Phrase 
           quote={quote.quote} 
-          color={background}
+          //color={background}
         />
         <i>
           <Author 
             author={quote.author} 
             changeQuote={handleQuote}
-            color={background}
+            //color={background}
           />
         </i>
       </div>
